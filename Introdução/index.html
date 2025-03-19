@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <label>Informe seu nome</label>
+    <input type='text' placeholder='texto' id='nome' />
+    <button onclick='greeting()'>Cumprimentar</button>
+<p></p>
+    <hr />
+
+    <button onclick='ola()'>Não clique aqui</button>
+
+    <script>
+      function ola() {
+        var nome = 'maria';
+        alert(nome);
+      }
+
+      function greeting() {
+        var nomeDigit = document.getElementById('nome');
+        if (nomeDigit.value === '') {
+          alert('O nome precisa ser informado');
+          nomeDigit.focus()
+          return;
+        }
+        var paragrafo = document.getElementsByTagName('p');
+        paragrafo[0].innerHTML = 'ola ' + nomeDigit.value;
+        nomeDigit.value = ''
+      }
+    </script>
+  </body>
+</html>
