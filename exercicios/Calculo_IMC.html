@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IMC</title>
+    <style>
+        .green {
+            background-color: rgb(109, 253, 205);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .orange {
+            background-color: rgb(253, 203, 109);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .red {
+            background-color: rgb(253, 109, 109);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .bg-pink {
+            background-color: pink;
+            border: 2px solid rgb(175, 124, 132);
+            border-radius: 3px;
+        }
+        .bg-pink-clicked {
+            background-color: rgb(250, 226, 230);
+            border: 2px solid rgb(175, 124, 132);
+            border-radius: 3px;
+        }
+
+        .bg-blue {
+            background-color: rgb(158, 219, 255);
+            border: 2px solid rgb(49, 127, 172);
+            border-radius: 3px;
+        }
+
+        .bg-blue-clicked {
+            background-color: rgb(205, 236, 253);
+            border: 2px solid rgb(49, 127, 172);
+            border-radius: 3px;
+        }
+
+        .bg-blue-chosed {
+            background-color: rgb(158, 219, 255);
+            border: 2px solid rgb(49, 127, 172);
+            border-radius: 3px;
+        }
+
+
+        .full-screen {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;        
+            justify-content: center; 
+            align-items: center;    
+        }
+
+        .container {
+            background-color: aliceblue;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;     
+            width: 300px;           
+        }
+
+        input, button {
+            margin: 5px 0;
+            padding: 5px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        #resultado, #resultado2 {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="full-screen">
+        <div class="container">
+            <h2>Calculadora IMC</h2>
+            <label>Sexo</label>
+            <div>
+                <button id="mulher" class="bg-pink">Mulher</button>
+                <button id="homem" class="bg-blue">Homem</button>
+            </div>
+
+            <label>Idade</label>
+            <div>
+                <input type="number" placeholder="Ex: 35" id="idade"> anos
+            </div>
+
+            <label>Altura</label>
+            <div>
+                <input type="number" placeholder="Ex: 165" id="altura"> cm
+            </div>
+
+            <label>Peso</label>
+            <div>
+                <input type="number" placeholder="Ex: 62,5" id="peso"> kg
+            </div>
+
+            <div>
+                <button onclick="calc()">Calcular IMC</button>
+            </div>
+            <div>
+                <p id="resultado"></p>
+                <p id="resultado2"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calc() {
+            var altura = document.getElementById('altura').value / 100;
+            var peso = document.getElementById('peso').value;
+            var resultado = document.getElementById('resultado');
+            var resultado2 = document.getElementById('resultado2');
+
+            var imc = peso / (altura * altura);
+
+            resultado.innerHTML = 'O seu resultado do IMC foi ' + imc.toFixed(2);
+
+            if (imc < 18.5) {
+                resultado2.innerHTML = 'Magreza';
+                resultado2.setAttribute('class', 'red');
+            }
+            if (imc >= 18.5 && imc < 25) {
+                resultado2.innerHTML = 'Normal';
+                resultado2.setAttribute('class', 'green');
+            }
+            if (imc >= 25 && imc < 30) {
+                resultado2.innerHTML = 'Sobrepeso';
+                resultado2.setAttribute('class', 'orange');
+            }
+            if (imc >= 30 && imc < 35) {
+                resultado2.innerHTML = 'Obesidade grau I';
+                resultado2.setAttribute('class', 'red');
+            }
+            if (imc >= 35 && imc < 40) {
+                resultado2.innerHTML = 'Obesidade grau II';
+                resultado2.setAttribute('class', 'red');
+            }
+            if (imc > 40) {
+                resultado2.innerHTML = 'Obesidade grau III';
+                resultado2.setAttribute('class', 'red');
+            }
+        }
+    </script>
+</body>
+
+</html>

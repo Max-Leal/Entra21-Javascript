@@ -5,40 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+
+        body {
+            background-color: rgb(185, 203, 209);
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            padding: 5px;
+        }
+
+        button {
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
 </head>
 
 <body>
     <h2>Arrays</h2>
-    <label>Informe veiculo que deseja adicionar</label>
-    <input type="text" placeholder="Ex: Corsa" id="carro">
-    <button onclick="addCar()">Inserir</button>
-    <p>Carros: <span id="garagem"></span></p>
-    <ul>
+    <label>Informe veículo que deseja adicionar</label>
 
-    </ul>
+    <input type="text" placeholder="Ex: Corsa" id="carro" onkeyup="activateButton()">
+    <button onclick="addCar()" disabled>Inserir</button>
+
+    <input type="radio" id="check1" name="escolha" checked>
+    <label>Início</label>
+
+    <input type="radio" id="check2" name="escolha">
+    <label>Final</label>
+    <p>Carros: <span id="garagem"></span></p>
+    <ul></ul>
 
     <script>
-        const cars = ['opala', 'fusca', 'tl']
-        cars.push('kombi')
-        cars.unshift('motoca')
-        document.getElementById('garagem').innerHTML = cars.toString()
+        const cars = ['opala', 'fusca', 'tl'];
+        cars.push('kombi');
+        cars.unshift('motoca');
+        updateGarage();
 
-        listCar()
+        function updateGarage() {
+            document.getElementById('garagem').innerHTML = cars.toString();
+            listCar();
+        }
 
         function listCar() {
-            itemLista = ''
+            let itemLista = '';
             for (let index = 0; index < cars.length; index++) {
                 itemLista += '<li>' + cars[index] + '</li>';
             }
-            document.getElementsByTagName('ul')[0].innerHTML = itemLista
+            document.getElementsByTagName('ul')[0].innerHTML = itemLista;
         }
 
         function addCar() {
-            carro = document.getElementById('carro')
-            cars.push(carro.value)
-            listCar()
+            const carro = document.getElementById('carro');
+            const rad1 = document.getElementById('check1').checked;
+            const rad2 = document.getElementById('check2').checked;
+            
+            if (carro.value.trim() !== '') { 
+                if (rad1) {
+                    cars.unshift(carro.value);
+                }
+                if (rad2) {
+                    cars.push(carro.value);
+                }
+                carro.value = '';
+                document.getElementsByTagName('button')[0].disabled = true;
+                updateGarage();
+            }
         }
 
+        function activateButton() {
+            const button = document.getElementsByTagName('button')[0];
+            const inputValue = document.getElementById('carro').value.trim();
+            button.disabled = inputValue === '';
+        }
     </script>
 </body>
 
