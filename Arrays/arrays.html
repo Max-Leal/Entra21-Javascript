@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Arrays</h2>
+    <label>Informe veiculo que deseja adicionar</label>
+    <input type="text" placeholder="Ex: Corsa" id="carro">
+    <button onclick="addCar()">Inserir</button>
+    <p>Carros: <span id="garagem"></span></p>
+    <ul>
+
+    </ul>
+
+    <script>
+        const cars = ['opala', 'fusca', 'tl']
+        cars.push('kombi')
+        cars.unshift('motoca')
+        document.getElementById('garagem').innerHTML = cars.toString()
+
+        listCar()
+
+        function listCar() {
+            itemLista = ''
+            for (let index = 0; index < cars.length; index++) {
+                itemLista += '<li>' + cars[index] + '</li>';
+            }
+            document.getElementsByTagName('ul')[0].innerHTML = itemLista
+        }
+
+        function addCar() {
+            carro = document.getElementById('carro')
+            cars.push(carro.value)
+            listCar()
+        }
+
+    </script>
+</body>
+
+</html>
