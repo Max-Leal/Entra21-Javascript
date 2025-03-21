@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <style>
-        .numpad {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 12px;
-            width: 250px;
-            padding: 20px 0;
+        * {
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        .numpad > button {
-            width: 50px;
+        body {
+            background-color: rgb(173, 153, 153);
+        }
+
+        .numpad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 350px;
+            padding: 20px 0;
+            place-items: center;
+        }
+
+        .numpad>button {
+            background-color: #FFFFFF;
+            width: 70px;
             height: 50px;
             font-size: 18px;
             cursor: pointer;
+            border-radius: 10px;
+            border: 1px outset;
+
+        }
+
+        .numpad>button:active {
+            border: 1px inset;
         }
 
         .full-screen {
@@ -36,65 +54,147 @@
         .container {
             display: flex;
             flex-direction: column;
-            background-color: rgb(238, 240, 238);
+            background-color: #F7F0F9;
             padding: 20px;
             border-radius: 10px;
             border: 1px solid black;
             text-align: center;
-            width: 300px;
-            height: 450px;
+            width: 350px;
+            height: 600px;
         }
 
         .display {
-            width: 250px;
+            width: 350px;
             height: 100px;
             background-color: rgb(211, 211, 214);
             border-radius: 10px;
-            margin: 0 auto 20px; 
+            margin: 0 auto 20px;
         }
-        
-        .display > input {
+
+        .display>input {
             width: 100%;
             height: 100%;
             border-radius: 10px;
-            border: 2px solid black;
+            border: 2px outset;
             text-align: end;
             font-size: 24px;
             padding: 0 10px;
             box-sizing: border-box;
         }
+
+        .bg-blue {
+            background-color: #0067C0 !important;
+            color: #FFFFFF;
+        }
+
+        .bg-gray {
+            background-color: #FBF7FC !important;
+        }
     </style>
 </head>
+
 <body>
     <div class="full-screen">
         <div class="container">
             <h1>Calculadora</h1>
             <div class="display">
-                <input type="text" readonly>
+                <input type="text" id="display" placeholder="0" readonly>
             </div>
             <div class="numpad">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>/</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>*</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>-</button>
-                <button>0</button>
-                <button>.</button>
-                <button>=</button>
-                <button>+</button>
+                <button class="bg-gray" onclick="porcentagem()">%</button>
+                <button class="bg-gray" onclick="limpar()">CE</button>
+                <button class="bg-gray" onclick="limpar()">C</button>
+                <button class="bg-gray" onclick="backspace()">back</button>
+                <button class="bg-gray" onclick="reciproco()">1/x</button>
+                <button class="bg-gray" onclick="pot()">x²</button>
+                <button class="bg-gray" onclick="raiz()">raiz²</button>
+                <button class="bg-gray" onclick="adicionar('/')">/</button>
+                <button onclick="adicionar('7')">7</button>
+                <button onclick="adicionar('8')">8</button>
+                <button onclick="adicionar('9')">9</button>
+                <button class="bg-gray" onclick="adicionar('*')">x</button>
+                <button onclick="adicionar('4')">4</button>
+                <button onclick="adicionar('5')">5</button>
+                <button onclick="adicionar('6')">6</button>
+                <button class="bg-gray" onclick="adicionar('-')">-</button>
+                <button onclick="adicionar('1')">1</button>
+                <button onclick="adicionar('2')">2</button>
+                <button onclick="adicionar('3')">3</button>
+                <button class="bg-gray" onclick="adicionar('+')">+</button>
+                <button onclick="adicionar('+/-')">+/-</button>
+                <button onclick="adicionar('0')">0</button>
+                <button onclick="adicionar('.')">.</button>
+                <button class="bg-blue" onclick="calcular()">=</button>
             </div>
         </div>
     </div>
 
     <script>
-    
+        let display = document.getElementById("display");
+
+        function adicionar(valor) {
+            if (display.value === "Erro") {
+                display.value = ""
+            }
+            display.value += valor;
+        }
+
+        function limpar() {
+            display.value = ""
+        }
+
+        function reciproco() {
+            if (display.value === "Erro") {
+                display.value = ""
+            }
+            display.value = 1 / parseFloat(display.value)
+        }
+
+        function raiz() {
+            if (display.value === "Erro") {
+                display.value = "";
+            }
+
+            let numero = parseFloat(display.value);
+
+            if (numero < 0) {
+                display.value = "Erro"; 
+            } else {
+                display.value = Math.sqrt(numero).toString();
+            }
+        }
+
+        function porcentagem() {
+            if (display.value === "Erro") {
+                display.value = "";
+            }
+
+            display.value = parseFloat(display.value)/100
+        }
+
+        function pot() {
+            if (display.value === "Erro") {
+                display.value = "";
+            }
+            let numero = parseFloat(display.value);
+
+            display.value = numero * numero
+        }
+
+
+        function backspace() {
+            display.value = display.value.slice(0, -1)
+        }
+
+        function calcular() {
+            try {
+                display.value = eval(display.value)
+            } catch {
+                display.value = "Erro"
+            }
+        }
+
     </script>
 </body>
+
 </html>

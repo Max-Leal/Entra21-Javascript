@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora IMC</title>
     <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
         .nivel-I {
             background-color: rgb(109, 253, 205);
             border-radius: 10px;
@@ -37,13 +40,13 @@
         }
 
         .bg-pink {
-            background-color: pink;
-            border: 2px solid rgb(175, 124, 132);
+            background-color: rgb(255, 224, 230);
+            border: 2px solid rgb(160, 4, 28);
             border-radius: 3px;
         }
 
         .bg-pink-clicked {
-            background-color: rgb(250, 226, 230);
+            background-color: rgb(255, 187, 198);
             border: 2px solid rgb(175, 124, 132);
             border-radius: 3px;
             padding: 5px;
@@ -51,13 +54,13 @@
         }
 
         .bg-blue {
-            background-color: rgb(158, 219, 255);
-            border: 2px solid rgb(49, 127, 172);
+            background-color: rgb(205, 236, 253);
+            border: 2px solid rgb(2, 84, 131);
             border-radius: 3px;
         }
 
         .bg-blue-clicked {
-            background-color: rgb(205, 236, 253);
+            background-color: rgb(161, 218, 248);
             border: 2px solid rgb(49, 127, 172);
             border-radius: 3px;
             padding: 5px;
@@ -77,7 +80,7 @@
         }
 
         .container {
-            background-color: rgb(204, 255, 223);
+            background-color: rgb(236, 236, 236);
             padding: 20px;
             border-radius: 10px;
             border: 1px solid black;
@@ -157,7 +160,7 @@
 
             var imc = peso / (altura * altura);
 
-            resultado.innerHTML = 'O seu resultado do IMC foi ' + imc.toFixed(2);
+            resultado.innerHTML = 'O seu resultado do IMC foi ' + imc.toFixed(2) + ' kg/m².';
 
             if (imc < 18.5) {
                 resultado2.innerHTML = 'Magreza';
