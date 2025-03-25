@@ -107,7 +107,7 @@
                 <button class="bg-gray" onclick="backspace()">back</button>
                 <button class="bg-gray" onclick="reciproco()">1/x</button>
                 <button class="bg-gray" onclick="pot()">x²</button>
-                <button class="bg-gray" onclick="raiz()">raiz²</button>
+                <button class="bg-gray" onclick="raiz()">√</button>
                 <button class="bg-gray" onclick="adicionar('/')">/</button>
                 <button onclick="adicionar('7')">7</button>
                 <button onclick="adicionar('8')">8</button>
@@ -121,7 +121,7 @@
                 <button onclick="adicionar('2')">2</button>
                 <button onclick="adicionar('3')">3</button>
                 <button class="bg-gray" onclick="adicionar('+')">+</button>
-                <button onclick="adicionar('+/-')">+/-</button>
+                <button onclick="inverter()">+/-</button>
                 <button onclick="adicionar('0')">0</button>
                 <button onclick="adicionar('.')">.</button>
                 <button class="bg-blue" onclick="calcular()">=</button>
@@ -141,6 +141,10 @@
 
         function limpar() {
             display.value = ""
+        }
+
+        function inverter() {
+            display.value = "-"+display.value
         }
 
         function reciproco() {
