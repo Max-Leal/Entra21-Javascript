@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Idade</th>
+                <th>Fone</th>
+            </tr>
+        </thead>
+        <tbody id="dados">
+            <!--Inserir dados via js-->
+
+        </tbody>
+    </table>
+
+    <hr>
+    <button onclick="listarEmTabela()">Carregar</button>
+
+    <script>
+        /*
+        var contato = {nome:'Ana', idade: 18, email:'ana@gmail.com', fone: '(47)9090-7060'};
+        document.getElementsByTagName('p')[0].innerHTML = contato.nome
+        */
+        var listaContatos = [
+            { nome: 'Ana', idade: 18, email: 'ana@gmail.com', fone: '(47)9090-7060' },
+            { nome: 'Maria', idade: 18, email: 'maria@gmail.com', fone: '(47)9091-7060' },
+            { nome: 'João', idade: 18, email: 'Joao@gmail.com', fone: '(47)9092-7060' },
+            { nome: 'Jose', idade: 18, email: 'Jose@gmail.com', fone: '(47)9093-7060' }
+        ]
+        function listarEmTabela() {
+            listaContatos.map(ct => show(ct))
+
+            /*
+            listaContatos.forEach(element => {
+                show(element)
+            });
+            */
+
+            /*
+            for (const key of listaContatos) {
+                show(key)
+            }
+            */
+        }
+            
+        function show(contato) {
+            const linha = `<tr>
+            <td>${contato.nome}</td>
+            <td>${contato.email}</td>
+            <td>${contato.idade}</td>
+            <td>${contato.fone}</td>
+            </tr>`
+           document.getElementById('dados').innerHTML += linha
+
+
+        }
+
+    
+
+    </script>
+</body>
+
+</html>

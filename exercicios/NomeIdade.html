@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    input {
+      padding: 5px;
+      border: 3px solid #955cff;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 5px;
+      border: 3px solid #955cff;
+      background-color: #aa7dfd;
+    }
+
+    button:focus {
+      background-color: #955cff;
+    }
+
+    .card {
+      background-color: #9d6cf8;
+      border: 1px solid #742afd;
+      padding: 20px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      width: 500px;
+      height: 200px;
+      border-radius: 10px;
+    }
+
+    .center-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="center-screen">
+    <div class="card">
+      <h2>Insira seu nome e idade:</h2>
+      <input type="text" placeholder="nome" id="innome" />
+      <input type="number" placeholder="idade" id="inidade" />
+      <button onclick="verificar()">Confirmar</button>
+      <p id="outmsg"></p>
+    </div>
+  </div>
+
+  <script>
+    function verificar() {
+      var nome = document.getElementById("innome");
+      var idade = document.getElementById("inidade");
+      var p = document.getElementById("outmsg");
+
+      if (idade.value === "" || nome.value === "") {
+        alert("Insira sua idade e nome");
+        nome.focus();
+        return;
+      }
+
+      if (idade.value < 18) {
+        p.innerHTML =
+          nome.value +
+          ", você tem " +
+          idade.value +
+          " anos por isso você é menor de idade";
+        p.style.color = "rgb(255, 61, 61)";
+        return;
+      }
+      p.innerHTML =
+        nome.value +
+        ", você tem " +
+        idade.value +
+        " anos por isso você é maior de idade";
+
+      p.style.color = "rgb(109, 248, 128)";
+    }
+
+  </script>
+</body>
+
+</html>
