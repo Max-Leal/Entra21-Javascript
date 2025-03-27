@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function loadLogradouro(cep) {
+            fetch(`http://viacep.com.br/ws/${cep}/json/`)
+                .then(data => data.json())
+                .then(res => {
+                    console.log(res)
+                    console.log(res.logradouro)
+                })
+        }
+
+        loadLogradouro('89015100')
+    </script>
+</body>
+
+</html>

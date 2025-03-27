@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="soma(10,5,showParagrafo)">Mostrar em paragrafo</button>
+    <button onclick="soma(10,5,showAlert)">Mostrar em pop-up</button>
+
+    <p id="resultado"></p>
+    <script>
+        function soma(x, y, callback) {
+            callback(x+y)
+        }
+
+      /*()  const retorno = soma(10, 5)
+
+        document.getElementById('resultado').innerHTML = retorno
+
+        var xpto = soma
+        document.getElementById('resultado').innerHTML = xpto(20, 10)
+
+        showAlert(xpto(10, 5))
+
+        */
+        function showParagrafo(valor) {
+            document.getElementById('resultado').innerHTML = valor
+        }
+
+        function showAlert(valor) {
+            alert(valor)
+        }
+    </script>
+</body>
+
+</html>
